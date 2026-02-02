@@ -537,9 +537,9 @@
     }
 
     .profileImg {
-      width: 110px;
-      height: 110px;
-      border-radius: 22px;
+      width: 160px;
+      height: 160px;
+      border-radius: 28px;
       border: 2px solid rgba(255,255,255,.18);
       overflow: hidden;
       background: rgba(255,255,255,.06);
@@ -1185,7 +1185,7 @@
             <p class="title">&nbsp;</p>
             <div class="badgeRow">
               <div class="badgeIcon">
-                <img src="/mnt/user-data/uploads/SELO-EMBAIXADORA.png" alt="Selo Embaixadora" />
+                <img src="https://erikaalves.top/wp-content/uploads/2026/01/SELO-EMBAIXADORA.png" alt="Selo Embaixadora" />
               </div>
               <div style="flex:1;">
                 <strong style="display:block; margin-bottom:6px; font-size:17px;" data-i18n="badge_use">
@@ -1245,7 +1245,7 @@
     <section class="section final">
       <div class="wrap">
         <div class="finalBadge">
-          <img src="/mnt/user-data/uploads/SELO-EMBAIXADORA.png" alt="Selo" />
+          <img src="https://erikaalves.top/wp-content/uploads/2026/01/SELO-EMBAIXADORA.png" alt="Selo" />
           <strong>ACESSO LIBERADO</strong>
         </div>
 
@@ -1338,6 +1338,7 @@
         cert_tip: "<strong>Dica:</strong> você pode compartilhar nos Stories ou guardar como marco pessoal.",
         download_cert: "Baixar certificado",
         copy_verify: "Copiar link de verificação",
+        cert_name_fallback: "Embaixadora Transformacional",
         
         final_h2: "<strong>Ative seu acesso de Embaixadora</strong><br/>e receba seu Planner com IA Pro <strong>GRÁTIS</strong>",
         final_p: "Este passo faz parte do fluxo oficial de entrega. Seu código exclusivo já está configurado abaixo. Clique para ativar e receber acesso imediato ao <strong>TransformAI Planner 2026 Premium</strong>.",
@@ -1397,6 +1398,7 @@
         cert_tip: "<strong>Tip:</strong> you can share it in Stories or keep it as a personal milestone.",
         download_cert: "Download certificate",
         copy_verify: "Copy verification link",
+        cert_name_fallback: "Transformational Ambassador",
         
         final_h2: "<strong>Activate your Ambassador access</strong><br/>and receive your AI Planner Pro <strong>FREE</strong>",
         final_p: "This step is part of the official delivery flow. Your exclusive code is already set below. Click to activate and receive immediate access to <strong>TransformAI Planner 2026 Premium</strong>.",
@@ -1450,9 +1452,8 @@
         welcomeMsg.innerHTML = translate("hello_generic");
       }
 
-      if (ambassadorName) {
-        generateCertificate(ambassadorName);
-      }
+      const displayName = ambassadorName || translate("cert_name_fallback");
+      generateCertificate(displayName);
 
       document.getElementById("langLabel").textContent = LANG.toUpperCase();
       document.getElementById("langHint").textContent = `• ${LANG === "pt" ? "EN" : "PT"}`;
@@ -1473,7 +1474,7 @@
       
       const img = new Image();
       img.crossOrigin = "anonymous";
-      img.src = "/mnt/user-data/uploads/MODELO-CERTIFICADO.png";
+      img.src = "https://erikaalves.top/wp-content/uploads/2026/02/certificado-embaixadora.png";
       
       img.onload = function() {
         canvas.width = 1400;
@@ -1491,7 +1492,8 @@
         
         ctx.font = "italic 32px 'Inter', sans-serif";
         ctx.fillStyle = "rgba(255,255,255,0.6)";
-        const dateText = new Date().toLocaleDateString('pt-BR', { 
+        const dateLocale = LANG === "pt" ? "pt-BR" : "en-US";
+        const dateText = new Date().toLocaleDateString(dateLocale, { 
           day: '2-digit', 
           month: 'long', 
           year: 'numeric' 
